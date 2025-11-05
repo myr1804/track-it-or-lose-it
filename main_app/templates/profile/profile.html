@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Profile</title>
+<link rel="stylesheet" href="{% static 'main_app/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-box">
+    <h2>Profile</h2>
+
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Password:</strong> *******</p>
+
+    {% if user.profile %}
+        <a href="{% url 'add-profile' %}" class="btn secondary">Update</a>
+
+        <form method="post" action="{% url 'delete-profile' user.profile.id %}" style="margin-top: 20px;">
+            {% csrf_token %}
+            <button type="submit" 
+                    class="btn secondary"
+                    onclick="return confirm('Are you sure you want to delete your profile?');">
+                Delete
+            </button>
+        </form>
+    {% else %}
+        <p>Update your profile for more accurate results, bestie:</p>
+        <a href="{% url 'add-profile' %}" class="btn secondary">Add Profile</a>
+    {% endif %}
+</div>
+{% endblock %}

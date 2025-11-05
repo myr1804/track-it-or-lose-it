@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tz %} 
+
+{% block head %}
+<title>Dashboard</title>
+<link rel="stylesheet" href="{% static 'main_app/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Hi {{ user.profile.first_name|default:"Pookie" }}!</h1>
+<h1>{{ today|date:"F j, Y" }}</h1>
+
+<div class="dashboard-container">
+  <div class="meals-column">
+    <div class="meals">
+      <h2>Breakfast <a href="{% url 'add-meal' %}?meal_type=Breakfast">➕</a></h2>
+      {% for entry in breakfast_entries %}
+        <a href="{% url 'meal-edit' entry.pk %}">{{ entry.food.name }}</a>
+        <p>Qty: {{ entry.quantity }} — Calories for 1 serving: {{ entry.food.calories }} kcal</p>
+      {% empty %}
+        <p>No breakfast entries yet.</p>
+      {% endfor %}
+    </div>
+
+    <div class="meals">
+      <h2>Lunch <a href="{% url 'add-meal' %}?meal_type=Lunch">➕</a></h2>
+      {% for entry in lunch_entries %}
+        <a href="{% url 'meal-edit' entry.pk %}">{{ entry.food.name }}</a>
+        <p>Qty: {{ entry.quantity }} — Calories for 1 serving: {{ entry.food.calories }} kcal</p>
+      {% empty %}
+        <p>No lunch entries yet.</p>
+      {% endfor %}
+    </div>
+
+    <div class="meals">
+      <h2>Dinner <a href="{% url 'add-meal' %}?meal_type=Dinner">➕</a></h2>
+      {% for entry in dinner_entries %}
+        <a href="{% url 'meal-edit' entry.pk %}">{{ entry.food.name }}</a>
+        <p>Qty: {{ entry.quantity }} — Calories for 1 serving: {{ entry.food.calories }} kcal</p>
+      {% empty %}
+        <p>No dinner entries yet.</p>
+      {% endfor %}
+    </div>
+
+    <div class="meals">
+      <h2>Snack <a href="{% url 'add-meal' %}?meal_type=Snack">➕</a></h2>
+      {% for entry in snack_entries %}
+        <a href="{% url 'meal-edit' entry.pk %}">{{ entry.food.name }}</a>
+        <p>Qty: {{ entry.quantity }} — Calories for 1 serving: {{ entry.food.calories }} kcal</p>
+      {% empty %}
+        <p>No snack entries yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="daily-summary">
+    <h3>Daily Summary</h3>
+    <table>
+      <tr>
+        <th>Macro</th>
+        <th>Consumed</th>
+        <th>Recommended</th>
+      </tr>
+      <tr>
+        <td>Calories</td>
+        <td>{{ total_calories }} kcal</td>
+        <td>2000 kcal</td>
+      </tr>
+      <tr>
+        <td>Proteins</td>
+        <td>{{ total_proteins }} g</td>
+        <td>50 g</td>
+      </tr>
+      <tr>
+        <td>Carbs</td>
+        <td>{{ total_carbs }} g</td>
+        <td>300 g</td>
+      </tr>
+      <tr>
+        <td>Fats</td>
+        <td>{{ total_fats }} g</td>
+        <td>85 g</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<script src="{% static 'main_app/search_bar.js' %}"></script>
+{% endblock %}

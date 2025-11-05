@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Add Custom Food</title>
+<link rel="stylesheet" href="{% static 'main_app/css/form.css' %}">
+{% endblock %}
+{% block content %}
+<div class="form-box">
+  <h2>Add Custom Food Item</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div style="margin‑bottom:10px;">
+      {{ food_form.name.label_tag }}<br>
+      {{ food_form.name }}
+    </div>
+    <div style="margin‑bottom:10px;">
+      {{ food_form.calories.label_tag }}<br>
+      {{ food_form.calories }}
+    </div>
+    <div style="margin‑bottom:10px;">
+      {{ food_form.proteins.label_tag }}<br>
+      {{ food_form.proteins }}
+    </div>
+    <div style="margin‑bottom:10px;">
+      {{ food_form.carbs.label_tag }}<br>
+      {{ food_form.carbs }}
+    </div>
+    <div style="margin‑bottom:10px;">
+      {{ food_form.fats.label_tag }}<br>
+      {{ food_form.fats }}
+    </div>
+    <button class="btn secondary">Create Food</button>
+    <a href="{% url 'food-list' %}" class="btn secondary">Back </a>
+  </form>
+</div>
+{% endblock %}

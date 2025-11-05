@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main_app/css/form.css' %}">
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Complete Your Profile </h1>
+</div>
+<div class="form-box">
+  <form action="" method="post" class="form-container" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+      {{ profile_form.as_p }}
+    </table>
+    <button type="submit" class="btn submit">Save Profile</button>
+    <a href="{% url 'profile' %}" class="btn" style="padding:5px 10px; margin-left:10px;">Skip</a>
+  </form>
+</div>
+
+{% endblock %}

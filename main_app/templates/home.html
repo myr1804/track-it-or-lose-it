@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+  <title>Track it or Lose it</title>
+  <link rel="stylesheet" href="{% static 'main_app/css/base.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="center-container">
+    <div class="welcome-box">
+      <h1>Hi Pookie!</h1>
+      <h2>Track it or Lose it  🍰 </h2>
+      <section>
+        <form action="{% url 'home' %}" method="post" class="login">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="hidden" name="next" value="{{ next }}">
+          <button type="submit" class="btn submit">Login</button>
+          <a href="{% url 'signup' %}" class="btn secondary">Sign up</a>
+        </form>
+      </section>
+    </div>
+  </div>
+{% endblock %}

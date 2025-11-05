@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'main_app/css/base.css' %}">
+{% endblock %} 
+{% block content %}
+<body>
+    <div class="welcome-box">
+        <h1>About</h1>
+            <p>Track it or lose it is a nutrition tracking. This app 
+                helps you maintain a healthy diet by monitoring the 
+                amount of calories/macronutrients you consume daily. Simply enter your meal content
+                and we'll tell you many calories, carbs, proteins and fats you 
+                have consumed. We can also give you a personal estimate 
+                of the daily recommended calories/macronutrients based on 
+                a few factors such as your age, weight, and gender and suggest a recommended
+                diet for those who are looking to lose or gain a few pounds. 
+            <p>
+        {% if not user.is_authenticated %}
+        <div>
+            <h3>If you ready to track it or lose it; then sign up or log in besties!</h3>
+            <a href="{% url 'home' %}"class="btn secondary">Login</a>
+            <a href="{% url 'signup' %}" class="btn secondary">Sign Up</a>
+        </div>
+    </div>
+    {% endif %}
+</body>
+
+{% endblock %}

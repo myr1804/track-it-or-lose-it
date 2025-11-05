@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Log a Meal</title>
+<link rel="stylesheet" href="{% static 'main_app/css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-box">
+    <h2>Log a Meal</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom: 10px;">
+            {{ form.date.label_tag }}
+            {{ form.date }}
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            {{ form.meal_type.label_tag }}
+            {{ form.meal_type }}
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            {{ form.food.label_tag }}
+            {{ form.food }}
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            {{ form.quantity.label_tag }}
+            {{ form.quantity }}
+        </div>
+        
+        <button type="submit" class="btn secondary">Add Meal</button>
+        <a href="{% url 'profile-index' %}" class="btn secondary">Skip</a>
+  </form>
+
+</div>
+{% endblock %}

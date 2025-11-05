@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Food List</title>
+<link rel="stylesheet" href="{% static 'main_app/css/food.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+ <form method="get" action="{% url 'food-list' %}" autocomplete="off" style="position: relative;">
+    <input 
+        type="text" 
+        id="food-search" 
+        name="q" 
+        placeholder="Search food..." 
+        value="{{ query|default:'' }}"
+        style="width: 300px; padding: 5px;"
+    >
+    <button type="submit" class="btn">Search</button>
+
+    <ul id="autocomplete-results" ></ul>
+</form>
+</div> 
+
+<button type="button" class="btn secondary" onclick="window.location.href='add-food';">
+  Create custom food
+</button>
+
+<script src="{% static 'main_app/search_bar.js' %}">
+</script>
+
+{% endblock %}
