@@ -55,9 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django.middleware.security.SecurityMiddleware",
-    # Add this. It MUST be added after the line above: 
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    # Other items below
 ]
 
 ROOT_URLCONF = 'trackitorloseit.urls'
