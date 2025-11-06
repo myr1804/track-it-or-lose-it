@@ -1,1 +1,1 @@
-web: gunicorn <trackitorloseit>.wsgi
+web: gunicorn trackitorloseit.wsgi
